@@ -52,52 +52,52 @@ export default class game_jokenpo extends Component {
         let resultado = '';
         let corResultado = '';
 
-        if (escolhaComputador == 'pedra') {
-            if(escolhaUsuario == 'pedra') {
+        if (escolhaComputador === 'pedra') {
+            if(escolhaUsuario === 'pedra') {
                 resultado = 'Empate';
                 corResultado = 'blue';
             }
 
-            if (escolhaUsuario == 'papel') {
+            if (escolhaUsuario === 'papel') {
                 resultado = 'Você ganhou';
                 corResultado = 'green';
             }
 
-            if (escolhaUsuario == 'tesoura') {
+            if (escolhaUsuario === 'tesoura') {
                 resultado = 'Você perdeu';
                 corResultado = 'red';
             }
         }
 
-        if (escolhaComputador == 'papel') {
-            if(escolhaUsuario == 'papel') {
+        if (escolhaComputador === 'papel') {
+            if (escolhaUsuario === 'papel') {
                 resultado = 'Empate';
                 corResultado = 'blue';
             }
 
-            if (escolhaUsuario == 'tesoura') {
+            if (escolhaUsuario === 'tesoura') {
                 resultado = 'Você ganhou';
                 corResultado = 'green';
             }
 
-            if (escolhaUsuario == 'pedra') {
+            if (escolhaUsuario === 'pedra') {
                 resultado = 'Você perdeu';
                 corResultado = 'red';
             }
         }
 
         if (escolhaComputador == 'tesoura') {
-            if(escolhaUsuario == 'tesoura') {
+            if (escolhaUsuario === 'tesoura') {
                 resultado = 'Empate';
                 corResultado = 'blue';
             }
 
-            if (escolhaUsuario == 'pedra') {
+            if (escolhaUsuario === 'pedra') {
                 resultado = 'Você ganhou';
                 corResultado = 'green';
             }
 
-            if (escolhaUsuario == 'papel') {
+            if (escolhaUsuario === 'papel') {
                 resultado = 'Você perdeu';
                 corResultado = 'red';
             }
@@ -137,16 +137,16 @@ export default class game_jokenpo extends Component {
 
                     <Palco
                         styles={styles}
-                        escolha={this.state.escolhaComputador}
+                        escolha={this.state.escolhaUsuario}
                         resultado={this.state.corResultado}
-                        jogador='Computador'
+                        jogador='Você'
                     />
 
                     <Palco
                         styles={styles}
-                        escolha={this.state.escolhaUsuario}
+                        escolha={this.state.escolhaComputador}
                         resultado={this.state.corResultado}
-                        jogador='Você'
+                        jogador='Computador'
                     />
                 </View>
             </View>
