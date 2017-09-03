@@ -121,10 +121,12 @@ export default class game_jokenpo extends Component {
                     </View>
                 </View>
 
-                <View>
+                <View style={styles.palco}>
+                    <Text style={styles.txtResultado}>{this.state.resultado}</Text>
                     <Text>Escolha do Computador {this.state.escolhaComputador}</Text>
+                    <Image source={require('./img/palco/tesoura.png')} />
                     <Text>Escolha do Usuário {this.state.escolhaUsuario}</Text>
-                    <Text>Resultado {this.state.resultado}</Text>
+                    <Image source={require('./img/palco/tesoura.png')} />
                 </View>
             </View>
         );
@@ -139,6 +141,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: 10
+    },
+    palco: {
+        alignItems: 'center'
+    },
+    txtResultado: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: 'red',
+        height: 60
     }
 });
 
