@@ -10,10 +10,19 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  Image
 } from 'react-native';
 
-
+class Topo extends Component {
+    render() {
+        return (
+            <View>
+                <Image source={require('./img/jokenpo.png')}/>
+            </View>
+        );
+    }
+}
 
 export default class game_jokenpo extends Component {
 
@@ -96,16 +105,25 @@ export default class game_jokenpo extends Component {
     render() {
         return (
             <View>
-                <Text>Escolha do Computador {this.state.escolhaComputador}</Text>
-                <Text>Escolha do Usuário {this.state.escolhaUsuario}</Text>
-                <Text>Resultado {this.state.resultado}</Text>
-                <Button title='pedra' onPress={ () => this.jokenpo('pedra') } />
-                <Button title='papel' onPress={ () => this.jokenpo('papel') } />
-                <Button title='tesoura' onPress={ () => this.jokenpo('tesoura') } />
+                <Topo />
+                
+                <View>
+                    <Button title='pedra' onPress={ () => this.jokenpo('pedra') } />
+                    <Button title='papel' onPress={ () => this.jokenpo('papel') } />
+                    <Button title='tesoura' onPress={ () => this.jokenpo('tesoura') } />
+                </View>
+
+                <View>
+                    <Text>Escolha do Computador {this.state.escolhaComputador}</Text>
+                    <Text>Escolha do Usuário {this.state.escolhaUsuario}</Text>
+                    <Text>Resultado {this.state.resultado}</Text>
+                </View>
             </View>
         );
     }
 }
+
+
 
 
 AppRegistry.registerComponent('game_jokenpo', () => game_jokenpo);
