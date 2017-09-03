@@ -24,6 +24,48 @@ class Topo extends Component {
     }
 }
 
+class Palco extends Component {
+    render() {
+        let escolha = '';
+
+        if(this.props.escolha == 'pedra') {
+            return (
+                <View style={styles.iconeJogador}>
+                    <Text style={styles.iconeJogador}>{this.props.jogador}</Text>
+                    <Image source={require('./img/palco/pedra.png')} />
+                </View>
+            );
+
+        } else if(this.props.escolha == 'papel') {
+            return (
+                <View style={styles.iconeJogador}>
+                    <Text style={styles.iconeJogador}>{this.props.jogador}</Text>
+                    <Image source={require('./img/palco/papel.png')} />
+                </View>
+            );
+
+        } else if(this.props.escolha == 'tesoura') {
+            return (
+                <View style={styles.iconeJogador}>
+                    <Text style={styles.iconeJogador}>{this.props.jogador}</Text>
+                    <Image source={require('./img/palco/tesoura.png')} />
+                </View>
+            );
+
+        } else {
+            return false;
+        }
+
+
+        return (
+            <View>
+                <Text>Escolha do {this.props.jogador} {this.props.escolha}</Text>
+                <Image source={require(escolha)} />
+            </View>
+        );
+    }
+}
+
 export default class game_jokenpo extends Component {
 
     constructor(props) {
@@ -62,11 +104,11 @@ export default class game_jokenpo extends Component {
             }
 
             if (escolhaUsuario == 'papel') {
-                resultado = 'Usuário ganhou';
+                resultado = 'Você ganhou';
             }
 
             if (escolhaUsuario == 'tesoura') {
-                resultado = 'Computador ganhou';
+                resultado = 'Você perdeu';
             }
         }
 
@@ -76,11 +118,11 @@ export default class game_jokenpo extends Component {
             }
 
             if (escolhaUsuario == 'tesoura') {
-                resultado = 'Usuário ganhou';
+                resultado = 'Você ganhou';
             }
 
             if (escolhaUsuario == 'pedra') {
-                resultado = 'Computador ganhou';
+                resultado = 'Você perdeu';
             }
         }
 
@@ -90,11 +132,11 @@ export default class game_jokenpo extends Component {
             }
 
             if (escolhaUsuario == 'pedra') {
-                resultado = 'Usuário ganhou';
+                resultado = 'Você ganhou';
             }
 
             if (escolhaUsuario == 'papel') {
-                resultado = 'Computador ganhou';
+                resultado = 'Você perdeu';
             }
         }
 
@@ -121,12 +163,13 @@ export default class game_jokenpo extends Component {
                     </View>
                 </View>
 
+
                 <View style={styles.palco}>
                     <Text style={styles.txtResultado}>{this.state.resultado}</Text>
-                    <Text>Escolha do Computador {this.state.escolhaComputador}</Text>
-                    <Image source={require('./img/palco/tesoura.png')} />
-                    <Text>Escolha do Usuário {this.state.escolhaUsuario}</Text>
-                    <Image source={require('./img/palco/tesoura.png')} />
+
+                    <Palco escolha={this.state.escolhaComputador} jogador='Computador'></Palco>
+                    <Palco escolha={this.state.escolhaUsuario} jogador='Você'></Palco>
+
                 </View>
             </View>
         );
@@ -150,6 +193,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: 'red',
         height: 60
+    },
+    iconeJogador: {
+        alignItems: 'center',
+        marginBottom: 20
+    },
+    txtJogador: {
+        fontSize: 18
     }
 });
 
