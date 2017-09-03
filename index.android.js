@@ -106,11 +106,19 @@ export default class game_jokenpo extends Component {
         return (
             <View>
                 <Topo />
-                
-                <View>
-                    <Button title='pedra' onPress={ () => this.jokenpo('pedra') } />
-                    <Button title='papel' onPress={ () => this.jokenpo('papel') } />
-                    <Button title='tesoura' onPress={ () => this.jokenpo('tesoura') } />
+
+                <View style={styles.painelAcoes}>
+                    <View style={styles.btnEscolha}>
+                        <Button title='pedra' onPress={ () => this.jokenpo('pedra') } />
+                    </View>
+
+                    <View style={styles.btnEscolha}>
+                        <Button title='papel' onPress={ () => this.jokenpo('papel') } />
+                    </View>
+
+                    <View style={styles.btnEscolha}>
+                        <Button title='tesoura' onPress={ () => this.jokenpo('tesoura') } />
+                    </View>
                 </View>
 
                 <View>
@@ -123,7 +131,16 @@ export default class game_jokenpo extends Component {
     }
 }
 
-
+const styles = StyleSheet.create({
+    btnEscolha: {
+        width: 90
+    },
+    painelAcoes: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: 10
+    }
+});
 
 
 AppRegistry.registerComponent('game_jokenpo', () => game_jokenpo);
