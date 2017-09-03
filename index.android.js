@@ -14,57 +14,9 @@ import {
   Image
 } from 'react-native';
 
-class Topo extends Component {
-    render() {
-        return (
-            <View>
-                <Image source={require('./img/jokenpo.png')}/>
-            </View>
-        );
-    }
-}
+import Topo from './src/components/Topo';
+import Palco from './src/components/Palco';
 
-class Palco extends Component {
-    render() {
-        let escolha = '';
-
-        if(this.props.escolha == 'pedra') {
-            return (
-                <View style={styles.iconeJogador}>
-                    <Text style={styles.iconeJogador}>{this.props.jogador}</Text>
-                    <Image source={require('./img/palco/pedra.png')} />
-                </View>
-            );
-
-        } else if(this.props.escolha == 'papel') {
-            return (
-                <View style={styles.iconeJogador}>
-                    <Text style={styles.iconeJogador}>{this.props.jogador}</Text>
-                    <Image source={require('./img/palco/papel.png')} />
-                </View>
-            );
-
-        } else if(this.props.escolha == 'tesoura') {
-            return (
-                <View style={styles.iconeJogador}>
-                    <Text style={styles.iconeJogador}>{this.props.jogador}</Text>
-                    <Image source={require('./img/palco/tesoura.png')} />
-                </View>
-            );
-
-        } else {
-            return false;
-        }
-
-
-        return (
-            <View>
-                <Text>Escolha do {this.props.jogador} {this.props.escolha}</Text>
-                <Image source={require(escolha)} />
-            </View>
-        );
-    }
-}
 
 export default class game_jokenpo extends Component {
 
@@ -74,7 +26,8 @@ export default class game_jokenpo extends Component {
         this.state = {
             escolhaUsuario: '',
             escolhaComputador: '',
-            resultado: ''
+            resultado: '',
+            corResultado: 'white'
         };
     }
 
@@ -97,50 +50,65 @@ export default class game_jokenpo extends Component {
         }
 
         let resultado = '';
+        let corResultado = '';
 
         if (escolhaComputador == 'pedra') {
             if(escolhaUsuario == 'pedra') {
                 resultado = 'Empate';
+                corResultado = 'blue';
             }
 
             if (escolhaUsuario == 'papel') {
                 resultado = 'Você ganhou';
+                corResultado = 'green';
             }
 
             if (escolhaUsuario == 'tesoura') {
                 resultado = 'Você perdeu';
+                corResultado = 'red';
             }
         }
 
         if (escolhaComputador == 'papel') {
             if(escolhaUsuario == 'papel') {
                 resultado = 'Empate';
+                corResultado = 'blue';
             }
 
             if (escolhaUsuario == 'tesoura') {
                 resultado = 'Você ganhou';
+                corResultado = 'green';
             }
 
             if (escolhaUsuario == 'pedra') {
                 resultado = 'Você perdeu';
+                corResultado = 'red';
             }
         }
 
         if (escolhaComputador == 'tesoura') {
             if(escolhaUsuario == 'tesoura') {
                 resultado = 'Empate';
+                corResultado = 'blue';
             }
 
             if (escolhaUsuario == 'pedra') {
                 resultado = 'Você ganhou';
+                corResultado = 'green';
             }
 
             if (escolhaUsuario == 'papel') {
                 resultado = 'Você perdeu';
+                corResultado = 'red';
             }
         }
 
-        this.setState({ escolhaUsuario, escolhaComputador, resultado });
+        this.setState({
+            escolhaUsuario,
+            escolhaComputador,
+            resultado,
+            corResultado
+        });
 
     }
 
@@ -165,11 +133,21 @@ export default class game_jokenpo extends Component {
 
 
                 <View style={styles.palco}>
-                    <Text style={styles.txtResultado}>{this.state.resultado}</Text>
+                    <Text style={[styles.txtResultado, {'color': this.state.corResultado}]}>{this.state.resultado}</Text>
 
-                    <Palco escolha={this.state.escolhaComputador} jogador='Computador'></Palco>
-                    <Palco escolha={this.state.escolhaUsuario} jogador='Você'></Palco>
+                    <Palco
+                        styles={styles}
+                        escolha={this.state.escolhaComputador}
+                        resultado={this.state.corResultado}
+                        jogador='Computador'
+                    />
 
+                    <Palco
+                        styles={styles}
+                        escolha={this.state.escolhaUsuario}
+                        resultado={this.state.corResultado}
+                        jogador='Você'
+                    />
                 </View>
             </View>
         );
@@ -183,6 +161,7 @@ const styles = StyleSheet.create({
     painelAcoes: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginHorizontal: 5,
         marginVertical: 10
     },
     palco: {
@@ -191,7 +170,6 @@ const styles = StyleSheet.create({
     txtResultado: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: 'red',
         height: 60
     },
     iconeJogador: {
