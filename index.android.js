@@ -9,29 +9,42 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
 
 class MeuComponente extends Component {
     render() {
         return (
             <View>
-                <Text>{this.props.fruta1} Parâmetro</Text>
-                <Text>{this.props.fruta2} Parâmetro</Text>
+                <Text>{this.props.teste}</Text>
             </View>
         );
     }
 }
 
 export default class game_jokenpo extends Component {
-  render() {
-    return (
-        <MeuComponente
-            fruta1='Banana'
-            fruta2='Mamão'
-        />
-    );
-  }
+
+    constructor(props) {
+        super(props);
+         this.state = { texto: 'Texto teste'};
+    }
+
+    alteraTexto() {
+        this.setState({texto: 'Outra coisa'});
+    }
+
+    render() {
+        return (
+            <View>
+                <MeuComponente teste={this.state.texto} />
+                <Button
+                    title='Botão'
+                    onPress={() => this.alteraTexto()}
+                />
+            </View>
+        );
+    }
 }
 
 
